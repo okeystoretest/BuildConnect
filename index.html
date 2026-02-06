@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Build.Connect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div id="loginScreen" class="login-overlay">
+    <div class="login-box card-login">
+      <div class="logo" style="margin-bottom: 20px;">
+        <span class="build">Build</span><span class="connect">.Connect</span>
+      </div>
+      <div class="input-group-login">
+        <input type="text" id="userIdInput" placeholder="Digite seu ID" autofocus>
+        <button id="btnLogin">Entrar</button>
+      </div>
+      <p id="loginError" class="error-text hidden">ID não localizado.</p>
+    </div>
+  </div>
+
+  <div class="app hidden" id="appMain">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="logo"><span class="build">Build</span><span class="connect">.Connect</span></div>
+        <nav class="menu">
+          <div class="menu-group">
+            <button class="menu-item has-submenu" id="producaoBtn">
+              <i data-lucide="settings"></i><span>Produção</span>
+              <i class="arrow" data-lucide="chevron-down"></i>
+            </button>
+            <div class="submenu">
+              <button class="submenu-item" data-subsetor="Acabamento"><i
+                  data-lucide="check-circle"></i><span>Acabamento</span></button>
+              <button class="submenu-item" data-subsetor="Criação"><i
+                  data-lucide="palette"></i><span>Criação</span></button>
+              <button class="submenu-item" data-subsetor="Corte"><i
+                  data-lucide="scissors"></i><span>Corte</span></button>
+              <button class="submenu-item" data-subsetor="PCP"><i
+                  data-lucide="calendar-check"></i><span>PCP</span></button>
+            </div>
+          </div>
+          <div class="menu-separator"></div>
+          <button class="menu-item" data-setor="Almoxarifado"><i
+              data-lucide="archive"></i><span>Almoxarifado</span></button>
+          <button class="menu-item" data-setor="Logística"><i data-lucide="truck"></i><span>Logística</span></button>
+          <button class="menu-item" data-setor="Comercial"><i data-lucide="tag"></i><span>Comercial</span></button>
+          <button class="menu-item" data-setor="Financeiro"><i data-lucide="wallet"></i><span>Financeiro</span></button>
+          <button class="menu-item" data-setor="DHO"><i data-lucide="users"></i><span>DHO</span></button>
+        </nav>
+      </div>
+      <div class="sidebar-footer">
+        <button id="themeToggle" class="footer-btn"><i data-lucide="sun"></i></button>
+        <button id="btnLogout" class="footer-btn logout"><i data-lucide="log-out"></i></button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="header">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+          <div style="display: flex; align-items: center; gap: 15px;">
+            <button id="btnBack" class="footer-btn hidden"><i data-lucide="arrow-left"></i></button>
+            <div>
+              <h1 id="setorTitulo">Selecione um setor</h1>
+              <p id="setorDescricao">Escolha um setor para visualizar os conteúdos.</p>
+            </div>
+          </div>
+
+          <div id="searchWrapper" class="hidden"
+            style="display: flex; align-items: center; background: var(--glass); padding: 8px 15px; border-radius: 12px; border: 1px solid var(--border); gap: 10px; width: 280px; position: relative;">
+            <i data-lucide="search" style="width: 18px; opacity: 0.5;"></i>
+            <input type="text" id="searchInput" placeholder="Pesquisar arquivos..."
+              style="background: transparent; border: none; outline: none; color: var(--text); width: 100%; font-size: 14px; padding-right: 25px;">
+            <button id="clearSearch" class="hidden"
+              style="background: transparent; border: none; cursor: pointer; color: var(--text); position: absolute; right: 10px; display: flex; align-items: center; opacity: 0.6;">
+              <i data-lucide="x" style="width: 16px;"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="cards hidden" id="cardsContainer">
+        <div class="card documentos" onclick="App.openDrive('documentos')">
+          <i data-lucide="file-text"></i>
+          <h3>Documentos</h3>
+          <p>Políticas e registros oficiais.</p>
+        </div>
+        <div class="card instrucoes" onclick="App.openDrive('instrucoes')">
+          <i data-lucide="book-open"></i>
+          <h3>Instruções de Trabalho</h3>
+          <p>Padrões operacionais.</p>
+        </div>
+        <div class="card ferramentas" onclick="App.openDrive('ferramentas')">
+          <i data-lucide="wrench"></i>
+          <h3>Ferramentas</h3>
+          <p>Recursos e atalhos úteis.</p>
+        </div>
+      </section>
+
+      <section id="listHeader" class="list-header hidden">
+        <div class="view-controls">
+          <button id="viewGrid" class="footer-btn active" title="Grade"><i data-lucide="layout-grid"></i></button>
+          <button id="viewList" class="footer-btn" title="Lista"><i data-lucide="list"></i></button>
+        </div>
+      </section>
+
+      <section id="listView" class="list-view grid-mode hidden"></section>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
